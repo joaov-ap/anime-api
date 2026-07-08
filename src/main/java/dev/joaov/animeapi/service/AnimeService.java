@@ -1,5 +1,6 @@
 package dev.joaov.animeapi.service;
 
+import dev.joaov.animeapi.mapper.AnimeMapper;
 import dev.joaov.animeapi.model.Anime;
 import dev.joaov.animeapi.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
+    private final AnimeMapper MAPPER;
 
     public List<Anime> findAll() {
         return animeRepository.findAll();
@@ -25,16 +27,11 @@ public class AnimeService {
     }
 
     public Anime update(Long id, Anime anime) {
-        var animeToUpdate = findById(id);
+        var animeFound = findById(id);
 
-        anime.setId(id);
-        animeToUpdate.setId(anime.getId());
-        animeToUpdate.setName(anime.getName());
-        animeToUpdate.setEpisodes(anime.getEpisodes());
-        animeToUpdate.setStatus(anime.getStatus());
-        animeToUpdate.setGenre(anime.getGenre());
-
-        return animeRepository.update(anime, animeToUpdate);
+        var animeToUpdate = MAPPER.toAnime(anime);
+        animeToUpdate.setId(id);
+        return animeRepository.update(animeFound, animeToUpdate);
     }
 
     public void delete(Long id) {
