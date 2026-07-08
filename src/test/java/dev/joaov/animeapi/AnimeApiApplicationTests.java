@@ -1,4 +1,4 @@
-package dev.joaov.anime_api;
+package dev.joaov.animeapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

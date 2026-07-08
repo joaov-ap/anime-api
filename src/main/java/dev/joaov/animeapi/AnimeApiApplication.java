@@ -1,4 +1,4 @@
-package dev.joaov.anime_api;
+package dev.joaov.animeapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
