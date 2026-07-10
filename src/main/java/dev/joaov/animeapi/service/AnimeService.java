@@ -3,7 +3,9 @@ package dev.joaov.animeapi.service;
 import dev.joaov.animeapi.model.Anime;
 import dev.joaov.animeapi.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -17,7 +19,8 @@ public class AnimeService {
     }
 
     public Anime findById(Long id) {
-        return animeRepository.findById(id).orElseThrow(() -> new RuntimeException("Anime with id {%d} not found".formatted(id)));
+        return animeRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime with id {%d} not found".formatted(id)));
     }
 
     public Anime save(Anime anime) {
