@@ -5,6 +5,7 @@ import dev.joaov.animeapi.dto.AnimePostRequest;
 import dev.joaov.animeapi.dto.AnimePutRequest;
 import dev.joaov.animeapi.mapper.AnimeMapper;
 import dev.joaov.animeapi.service.AnimeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<AnimeGetResponse> save(@RequestBody AnimePostRequest postRequest) {
+    public ResponseEntity<AnimeGetResponse> save(@RequestBody @Valid AnimePostRequest postRequest) {
         var anime = MAPPER.toAnime(postRequest);
         var animeSaved = animeService.save(anime);
 
@@ -41,7 +42,7 @@ public class AnimeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AnimeGetResponse> update(@PathVariable Long id, @RequestBody AnimePutRequest putRequest) {
+    public ResponseEntity<AnimeGetResponse> update(@PathVariable Long id, @RequestBody @Valid AnimePutRequest putRequest) {
         var anime = MAPPER.toAnime(putRequest);
         var animeUpdated = animeService.update(id, anime);
 

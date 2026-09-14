@@ -12,7 +12,10 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AnimeMapper {
     Anime toAnime(AnimePostRequest animePostRequest);
+
     Anime toAnime(AnimePutRequest animePutRequest);
+
     AnimeGetResponse toAnimeGetResponse(Anime anime);
+
     List<AnimeGetResponse> toListAnimeGetResponse(List<Anime> animes);
 }

@@ -1,5 +1,6 @@
 package dev.joaov.animeapi.service;
 
+import dev.joaov.animeapi.exception.NotFoundException;
 import dev.joaov.animeapi.model.Anime;
 import dev.joaov.animeapi.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class AnimeService {
 
     public Anime findById(Long id) {
         return animeRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime with id {%d} not found".formatted(id)));
+                () -> new NotFoundException("Anime with id {%d} not found".formatted(id)));
     }
 
     public Anime save(Anime anime) {

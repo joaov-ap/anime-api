@@ -1,3 +1,24 @@
 spring:
   application:
     name: anime-api
+  threads:
+    virtual:
+      enabled: true
+  web:
+    error:
+      include-stacktrace: on_param
+
+logging:
+  level:
+    dev.joaov: debug
+server:
+  servlet:
+    context-path: /
+  tomcat:
+    threads:
+      max: 20
+
+database:
+  url: ${DB_URL:localhost}:${DB_PORT:3306}
+  username: ${LOCAL_USERNAME:joao}
+  password: ${LOCAL_PASSWORD:changeme}
